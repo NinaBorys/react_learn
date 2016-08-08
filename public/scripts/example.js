@@ -3,6 +3,35 @@ var data = [
   {id: 2, author: "Jordan Walke", text: "This is *another* comment"}
 ];
 
+var divStyle = {
+  background: "#D7F2EA",
+  padding: "20px",
+  margin: "20px",
+  border: "0.5px solid green",
+  width: "520px",
+  borderRadius: '.45rem'
+  //height: "420px
+};
+
+var divBoxStyle = {
+  background: "#eee",
+  padding: "20px",
+  margin: "20px",
+  border: "5px solid green",
+  width: "820px",
+  borderRadius: '.45rem'
+  //height: "420px
+};
+
+var buttonStyle = {
+  background: "#11E8AE",
+  fontSize: '12px',
+  padding: '6px',
+  borderRadius: '4px'
+};
+
+
+
 var CommentBox = React.createClass({
   loadCommentsFromServer: function() {
     $.ajax({
@@ -29,7 +58,7 @@ var CommentBox = React.createClass({
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(this.props.url, status, err.toString());
-      }.bind(this)      
+      }.bind(this)
     });
   },
   getInitialState: function() {
@@ -41,7 +70,7 @@ var CommentBox = React.createClass({
     },
   render: function() {
       return (
-        <div className="commentBox">
+        <div className="commentBox" style={divBoxStyle} >
         <h1>Comments</h1>
         <CommentList data={this.state.data} />
         <CommentForm onCommentSubmit={this.handleCommentSubmit} />
@@ -89,7 +118,7 @@ var CommentForm = React.createClass({
   },
   render: function() {
     return (
-      <form className="CommentForm" onSubmit={this.handleSubmit}>
+      <form className="CommentForm" onSubmit={this.handleSubmit}  style={divStyle}>
       < input
         type="text"
         placeholder="Your name"
@@ -102,7 +131,7 @@ var CommentForm = React.createClass({
         value={this.state.text}
         onChange={this.handleTextChange}
         />
-      < input type="submit" value="Post" />
+      < input type="submit" value="Post" style={buttonStyle} />
       </form>
     );
   }
